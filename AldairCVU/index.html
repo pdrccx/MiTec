@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aldair Contreras Ramírez · Currículum</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul-900: #0A2A5E;
+      --azul-800: #0D3B82;
+      --azul-100: #E6EEFB;
+      --azul-50:  #F3F7FD;
+      --texto:    #1B2430;
+      --texto-sec:#44505F;
+      --borde:    #D4DAE2;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Source Sans 3', 'Segoe UI', Arial, sans-serif;
+      color: var(--texto);
+      background: var(--azul-50);
+      line-height: 1.5;
+    }
+    .cv {
+      max-width: 820px;
+      margin: 32px auto;
+      background: #fff;
+      border: 1px solid var(--borde);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(10, 42, 94, .10);
+    }
+    header {
+      background: linear-gradient(135deg, var(--azul-900), var(--azul-800));
+      color: #fff;
+      padding: 40px;
+    }
+    header h1 { margin: 0 0 4px; font-size: 2.25rem; line-height: 1.2; }
+    .puesto { font-size: 1.25rem; color: #BCD3F5; font-weight: 600; margin: 0 0 12px; }
+    .ciudad { margin: 0; color: #E6EEFB; }
+    main { padding: 32px 40px 40px; }
+    section { margin-bottom: 32px; }
+    section:last-child { margin-bottom: 0; }
+    h2 {
+      font-size: 1.25rem;
+      color: var(--azul-900);
+      margin: 0 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--azul-100);
+    }
+    p { margin: 0 0 12px; }
+    .trabajo { margin-bottom: 20px; padding-left: 16px; border-left: 3px solid var(--azul-800); }
+    .trabajo:last-child { margin-bottom: 0; }
+    .trabajo h3 { margin: 0; font-size: 1.05rem; color: var(--azul-900); }
+    .trabajo .empresa { color: var(--texto-sec); font-size: .95rem; margin-bottom: 6px; }
+    .trabajo ul { margin: 0; padding-left: 20px; }
+    .trabajo li { margin-bottom: 4px; }
+    .contacto { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .contacto li { background: var(--azul-50); border: 1px solid var(--borde); border-radius: 6px; padding: 10px 14px; }
+    .contacto span { display: block; font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--texto-sec); }
+    .contacto a { color: var(--azul-800); text-decoration: none; }
+    .contacto a:hover { text-decoration: underline; }
+    .trabajo p { margin: 0; }
+    .etiquetas { display: flex; flex-wrap: wrap; gap: 8px; }
+    .etiquetas span { background: var(--azul-100); color: var(--azul-900); font-weight: 600; font-size: .9rem; padding: 4px 12px; border-radius: 999px; }
+    .idioma { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--azul-100); }
+    .idioma:last-child { border-bottom: 0; }
+    .nivel { background: var(--azul-100); color: var(--azul-800); font-weight: 600; font-size: .85rem; padding: 2px 12px; border-radius: 999px; }
+    @media (max-width: 640px) {
+      .cv { margin: 0; border: 0; border-radius: 0; }
+      header, main { padding: 24px 16px; }
+      header h1 { font-size: 1.75rem; }
+      .contacto { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cv">
+    <header>
+      <h1>Aldair Contreras Ramírez</h1>
+      <p class="puesto">Desarrollador Web Junior</p>
+      <p class="ciudad">📍 Río Grande, Zacatecas</p>
+    </header>
+
+    <main>
+      <section>
+        <h2>Perfil</h2>
+        <p>Desarrollador web con experiencia creando sitios y sistemas para instituciones y pequeños negocios. Me enfoco en interfaces claras, código ordenado y trabajo en equipo. Busco un puesto donde pueda seguir creciendo profesionalmente.</p>
+      </section>
+
+      <section>
+        <h2>Experiencia</h2>
+
+        <div class="trabajo">
+          <h3>Desarrollador Web</h3>
+          <div class="empresa">Soluciones Digitales del Norte · Río Grande, Zac. · 2024 – Actualidad</div>
+          <ul>
+            <li>Desarrollo de sitios web con HTML, CSS y JavaScript para clientes locales.</li>
+            <li>Creación de un sistema de diseño compartido para proyectos en equipo.</li>
+            <li>Mantenimiento y publicación de sitios en GitHub Pages.</li>
+          </ul>
+        </div>
+
+        <div class="trabajo">
+          <h3>Auxiliar de Soporte Técnico</h3>
+          <div class="empresa">Centro de Cómputo Municipal · Río Grande, Zac. · 2022 – 2024</div>
+          <ul>
+            <li>Instalación y configuración de equipos de cómputo y redes.</li>
+            <li>Atención a usuarios y solución de problemas de software.</li>
+            <li>Capacitación básica en herramientas de oficina.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Habilidades</h2>
+        <div class="etiquetas">
+          <span>Trabajo en equipo</span><span>Resolución de problemas</span><span>Comunicación</span>
+          <span>Diseño responsivo</span><span>Control de versiones</span><span>Atención a usuarios</span>
+        </div>
+      </section>
+
+      <section>
+        <h2>Programas y tecnologías</h2>
+        <div class="etiquetas">
+          <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>PHP</span><span>MySQL</span>
+          <span>Git y GitHub</span><span>Visual Studio Code</span><span>Figma</span>
+          <span>Microsoft Office</span><span>Windows y redes</span>
+        </div>
+      </section>
+
+      <section>
+        <h2>Cursos y proyectos</h2>
+        <div class="trabajo">
+          <h3>Portal del Instituto Tecnológico de Aldair Zacatecas Norte</h3>
+          <div class="empresa">Proyecto · 2026</div>
+          <p>Página principal y sistema de diseño institucional en azul para que un equipo desarrolle los módulos con el mismo estilo.</p>
+        </div>
+        <div class="trabajo">
+          <h3>Sistema de inventario para tienda local</h3>
+          <div class="empresa">Proyecto · 2025</div>
+          <p>Aplicación web con PHP y MySQL para registrar productos, entradas y salidas.</p>
+        </div>
+        <div class="trabajo">
+          <h3>Curso: Desarrollo Web Responsivo</h3>
+          <div class="empresa">freeCodeCamp · 2025 · 300 horas</div>
+        </div>
+        <div class="trabajo">
+          <h3>Curso: Git y GitHub desde cero</h3>
+          <div class="empresa">Plataforma en línea · 2024 · 20 horas</div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Idiomas</h2>
+        <div class="idioma"><strong>Español</strong><span class="nivel">Nativo</span></div>
+        <div class="idioma"><strong>Inglés</strong><span class="nivel">Intermedio (B1)</span></div>
+      </section>
+
+      <section>
+        <h2>Contacto</h2>
+        <ul class="contacto">
+          <li><span>Correo</span><a href="mailto:aldair.contreras@ejemplo.com">aldair.contreras@ejemplo.com</a></li>
+          <li><span>Teléfono</span><a href="tel:+524981234567">498 123 4567</a></li>
+          <li><span>LinkedIn</span><a href="#">linkedin.com/in/aldair-contreras</a></li>
+          <li><span>GitHub</span><a href="#">github.com/aldaircontreras</a></li>
+        </ul>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

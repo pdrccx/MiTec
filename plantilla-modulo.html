@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CAMBIAR: nombre del módulo -->
+  <title>Nombre del módulo · Instituto Tecnológico de Aldair Zacatecas Norte</title>
+  <!-- NO QUITAR: hoja de estilos común (ajusta la ruta si tu archivo está en otra carpeta) -->
+  <link rel="stylesheet" href="design-system.css">
+  <!-- Si tu módulo necesita estilos propios, ponlos en modulo.css y usa SOLO var(--...) -->
+</head>
+<body>
+<div class="ds-app">
+
+  <!-- ===== ENCABEZADO (igual en todos los módulos, solo cambia el nombre del módulo) ===== -->
+  <header class="ds-header">
+    <button class="ds-header__menu" aria-label="Abrir menú" onclick="document.querySelector('.ds-sidebar').classList.toggle('abierto')">☰</button>
+    <a href="index.html" class="ds-header__logo">
+      <img src="logo.png" alt="Logo TecNM">
+      <span class="ds-header__nombre">Instituto Tecnológico de Aldair Zacatecas Norte</span>
+    </a>
+    <span class="ds-header__modulo">Nombre del módulo</span>
+    
+  </header>
+
+  <!-- ===== MENÚ LATERAL (mismo menú en todos; marca con class="activo" tu módulo) ===== -->
+  <nav class="ds-sidebar" aria-label="Menú principal">
+    <div class="ds-sidebar__titulo">Principal</div>
+    <a href="index.html">Inicio</a>
+    <div class="ds-sidebar__titulo">Módulos</div>
+    <a href="conocenos.html">Conócenos</a>
+    <a href="oferta-educativa.html">Oferta educativa</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="faq.html">Preguntas frecuentes</a>
+  </nav>
+
+  <!-- ===== CONTENIDO DEL MÓDULO (aquí trabaja cada participante) ===== -->
+  <main class="ds-main">
+    <ol class="ds-breadcrumb">
+      <li><a href="index.html">Inicio</a></li>
+      <li>Nombre del módulo</li>
+    </ol>
+
+    <div class="ds-page-header">
+      <div>
+        <h1>Nombre del módulo</h1>
+        <p class="ds-texto-sec" style="margin:0">Descripción breve de lo que hace este módulo.</p>
+      </div>
+      <div class="ds-fila">
+        <button class="ds-btn ds-btn--secundario">Exportar</button>
+        <button class="ds-btn ds-btn--primario">+ Nuevo registro</button>
+      </div>
+    </div>
+
+    <!-- Tu contenido aquí: usa .ds-card, .ds-tabla, .ds-campo, etc. (ver index.html) -->
+    <div class="ds-card">
+      <h2 class="ds-card__titulo">Sección</h2>
+      <p>Contenido del módulo.</p>
+    </div>
+  </main>
+
+  <!-- ===== PIE (no modificar) ===== -->
+  <footer class="ds-footer">
+    © 2026 Instituto Tecnológico de Aldair Zacatecas Norte · Todos los derechos reservados
+  </footer>
+
+</div>
+</body>
+</html>

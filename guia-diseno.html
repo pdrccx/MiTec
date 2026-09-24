@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía de Diseño Institucional</title>
+  <link rel="stylesheet" href="design-system.css">
+  <style>
+    /* Estilos solo de la guía (no copiar a los módulos) */
+    .g-seccion { margin-bottom: var(--esp-7); scroll-margin-top: calc(var(--alto-header) + 16px); }
+    .g-demo { background: var(--blanco); border: 1px solid var(--gris-300); border-radius: var(--radio-lg) var(--radio-lg) 0 0; padding: var(--esp-5); }
+    .g-code { position: relative; margin: 0 0 var(--esp-5); background: var(--azul-900); color: #DCE7FA; border-radius: 0 0 var(--radio-lg) var(--radio-lg); padding: var(--esp-4); font: 13px/1.5 Consolas, 'Courier New', monospace; overflow-x: auto; white-space: pre; }
+    .g-copiar { position: absolute; top: 8px; right: 8px; background: var(--azul-700); color: #fff; border: 0; border-radius: 4px; padding: 4px 10px; font: 600 12px var(--fuente); cursor: pointer; }
+    .g-copiar:hover { background: var(--azul-500); }
+    .g-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: var(--esp-3); }
+    .g-swatch { border: 1px solid var(--gris-300); border-radius: var(--radio); overflow: hidden; background: var(--blanco); font-size: var(--texto-sm); }
+    .g-swatch div:first-child { height: 64px; }
+    .g-swatch div:last-child { padding: var(--esp-2) var(--esp-3); }
+    .g-swatch code { display: block; color: var(--gris-500); font-size: var(--texto-xs); }
+    .g-reglas { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-5); }
+    .g-reglas ul { margin: 0; padding-left: 20px; }
+    .g-reglas li { margin-bottom: var(--esp-2); }
+    .g-si { border-top: 4px solid var(--exito); }
+    .g-no { border-top: 4px solid var(--error); }
+    .g-esp { display: flex; align-items: flex-end; gap: var(--esp-4); flex-wrap: wrap; }
+    .g-esp div { background: var(--azul-500); }
+    .g-esp span { display: block; font-size: var(--texto-xs); color: var(--gris-700); margin-top: 4px; text-align: center; }
+    code { font-family: Consolas, monospace; font-size: .9em; background: var(--azul-100); color: var(--azul-900); padding: 1px 5px; border-radius: 4px; }
+    .g-code code { background: none; color: inherit; padding: 0; }
+    @media (max-width: 768px) { .g-reglas { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<div class="ds-app">
+
+  <header class="ds-header">
+    <button class="ds-header__menu" aria-label="Abrir menú" onclick="document.querySelector('.ds-sidebar').classList.toggle('abierto')">☰</button>
+    <a href="#" class="ds-header__logo">Sistema Institucional</a>
+    <span class="ds-header__modulo">Guía de diseño v1.0</span>
+  </header>
+
+  <nav class="ds-sidebar" aria-label="Secciones de la guía" onclick="if(event.target.tagName==='A')this.classList.remove('abierto')">
+    <div class="ds-sidebar__titulo">Empezar</div>
+    <a href="#inicio" class="activo">Cómo usar</a>
+    <a href="#reglas">Reglas</a>
+    <div class="ds-sidebar__titulo">Fundamentos</div>
+    <a href="#colores">Colores</a>
+    <a href="#tipografia">Tipografía</a>
+    <a href="#espaciado">Espaciado</a>
+    <a href="#layout">Estructura de página</a>
+    <div class="ds-sidebar__titulo">Componentes</div>
+    <a href="#botones">Botones</a>
+    <a href="#formularios">Formularios</a>
+    <a href="#tablas">Tablas</a>
+    <a href="#tarjetas">Tarjetas e indicadores</a>
+    <a href="#alertas">Alertas</a>
+    <a href="#etiquetas">Etiquetas</a>
+    <a href="#pestanas">Pestañas</a>
+    <a href="#paginacion">Paginación</a>
+    <a href="#modal">Modal</a>
+    <a href="#vacio">Estado vacío</a>
+  </nav>
+
+  <main class="ds-main">
+
+    <!-- ============ CÓMO USAR ============ -->
+    <section class="g-seccion" id="inicio">
+      <h1>Guía de Diseño Institucional</h1>
+      <p class="ds-texto-sec">Un solo diseño para todos los módulos. Si cada participante sigue esta guía, el sistema completo se verá como si lo hubiera hecho una sola persona.</p>
+
+      <div class="ds-grid ds-grid-3">
+        <div class="ds-card ds-kpi">
+          <div class="ds-kpi__valor">1</div>
+          <p class="ds-kpi__etiqueta">Copia <code>design-system.css</code> junto a tus archivos. <strong>No lo edites.</strong></p>
+        </div>
+        <div class="ds-card ds-kpi">
+          <div class="ds-kpi__valor">2</div>
+          <p class="ds-kpi__etiqueta">Duplica <code>plantilla-modulo.html</code> y renómbrala con el nombre de tu módulo.</p>
+        </div>
+        <div class="ds-card ds-kpi">
+          <div class="ds-kpi__valor">3</div>
+          <p class="ds-kpi__etiqueta">Construye tu contenido dentro de <code>&lt;main&gt;</code> copiando los componentes de esta guía.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ REGLAS ============ -->
+    <section class="g-seccion" id="reglas">
+      <h2>Reglas obligatorias</h2>
+      <div class="g-reglas">
+        <div class="ds-card g-si">
+          <h3>✔ Sí</h3>
+          <ul>
+            <li>Usar solo clases <code>.ds-*</code> para la interfaz.</li>
+            <li>Usar variables: <code>color: var(--azul-800)</code>, <code>padding: var(--esp-4)</code>.</li>
+            <li>Un solo botón <strong>primario</strong> por pantalla o formulario (la acción principal).</li>
+            <li>Títulos: un <code>&lt;h1&gt;</code> por página, luego <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code> en orden.</li>
+            <li>Textos de botones con verbo: “Guardar”, “Buscar”, “Exportar”.</li>
+            <li>Todo campo con <code>&lt;label&gt;</code>; obligatorios marcados con <code>*</code>.</li>
+            <li>Mensajes al usuario con <code>.ds-alerta</code>.</li>
+            <li>Si falta un componente, pedirlo al responsable del diseño.</li>
+          </ul>
+        </div>
+        <div class="ds-card g-no">
+          <h3>✘ No</h3>
+          <ul>
+            <li>Editar <code>design-system.css</code> por tu cuenta.</li>
+            <li>Escribir colores a mano (<code>#3366ff</code>, <code>red</code>, <code>blue</code>…).</li>
+            <li>Cambiar la fuente, el encabezado, el menú lateral o el pie.</li>
+            <li>Usar Bootstrap, Tailwind u otro framework de estilos.</li>
+            <li>Usar verde/rojo/amarillo como decoración: solo para estados.</li>
+            <li>Tamaños de texto fuera de la escala (nada de <code>font-size: 19px</code>).</li>
+            <li>Estilos en línea (<code>style="..."</code>) salvo casos mínimos.</li>
+            <li>Textos en MAYÚSCULAS completas o con varios signos (!!!).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COLORES ============ -->
+    <section class="g-seccion" id="colores">
+      <h2>Colores</h2>
+      <p class="ds-texto-sec">El azul es la identidad. Los neutros son para texto y bordes. Los de estado solo comunican éxito, aviso o error.</p>
+      <h3>Azul institucional</h3>
+      <div class="g-swatches" style="margin-bottom:var(--esp-5)">
+        <div class="g-swatch"><div style="background:var(--azul-900)"></div><div>Azul 900 · encabezado<code>--azul-900 #0A2A5E</code></div></div>
+        <div class="g-swatch"><div style="background:var(--azul-800)"></div><div><strong>Azul 800 · principal</strong><code>--azul-800 #0D3B82</code></div></div>
+        <div class="g-swatch"><div style="background:var(--azul-700)"></div><div>Azul 700 · hover<code>--azul-700 #1550A8</code></div></div>
+        <div class="g-swatch"><div style="background:var(--azul-500)"></div><div>Azul 500 · foco<code>--azul-500 #2F73D9</code></div></div>
+        <div class="g-swatch"><div style="background:var(--azul-200)"></div><div>Azul 200<code>--azul-200 #BCD3F5</code></div></div>
+        <div class="g-swatch"><div style="background:var(--azul-100)"></div><div>Azul 100 · resalte<code>--azul-100 #E6EEFB</code></div></div>
+        <div class="g-swatch"><div style="background:var(--azul-50)"></div><div>Azul 50 · fondo<code>--azul-50 #F3F7FD</code></div></div>
+      </div>
+      <h3>Neutros</h3>
+      <div class="g-swatches" style="margin-bottom:var(--esp-5)">
+        <div class="g-swatch"><div style="background:var(--gris-900)"></div><div>Texto principal<code>--gris-900 #1B2430</code></div></div>
+        <div class="g-swatch"><div style="background:var(--gris-700)"></div><div>Texto secundario<code>--gris-700 #44505F</code></div></div>
+        <div class="g-swatch"><div style="background:var(--gris-500)"></div><div>Ayuda / deshabilitado<code>--gris-500 #7A8594</code></div></div>
+        <div class="g-swatch"><div style="background:var(--gris-300)"></div><div>Bordes<code>--gris-300 #D4DAE2</code></div></div>
+        <div class="g-swatch"><div style="background:var(--gris-100)"></div><div>Fondo alterno<code>--gris-100 #EEF1F5</code></div></div>
+        <div class="g-swatch"><div style="background:var(--blanco)"></div><div>Blanco · tarjetas<code>--blanco #FFFFFF</code></div></div>
+      </div>
+      <h3>Estados</h3>
+      <div class="g-swatches">
+        <div class="g-swatch"><div style="background:var(--exito)"></div><div>Éxito<code>--exito #1E7B4A</code></div></div>
+        <div class="g-swatch"><div style="background:var(--aviso)"></div><div>Aviso<code>--aviso #9A6300</code></div></div>
+        <div class="g-swatch"><div style="background:var(--error)"></div><div>Error<code>--error #B42318</code></div></div>
+      </div>
+    </section>
+
+    <!-- ============ TIPOGRAFÍA ============ -->
+    <section class="g-seccion" id="tipografia">
+      <h2>Tipografía</h2>
+      <p class="ds-texto-sec">Fuente única: <strong>Source Sans 3</strong> (se carga sola desde el CSS). Solo pesos 400, 600 y 700.</p>
+      <div class="g-demo">
+        <h1>Título de página · 32px / 700</h1>
+        <h2>Título de sección · 24px / 700</h2>
+        <h3>Subtítulo · 20px / 600</h3>
+        <p>Texto normal · 16px / 400. Es el tamaño de todo el contenido general del sistema.</p>
+        <p class="ds-texto-sec">Texto secundario · clase <code>.ds-texto-sec</code></p>
+        <p class="ds-texto-ayuda" style="margin:0">Texto de ayuda · 14px · clase <code>.ds-texto-ayuda</code></p>
+      </div>
+      <pre class="g-code">&lt;h1&gt;Título de página&lt;/h1&gt;
+&lt;h2&gt;Título de sección&lt;/h2&gt;
+&lt;h3&gt;Subtítulo&lt;/h3&gt;
+&lt;p&gt;Texto normal&lt;/p&gt;
+&lt;p class="ds-texto-sec"&gt;Texto secundario&lt;/p&gt;
+&lt;p class="ds-texto-ayuda"&gt;Texto de ayuda&lt;/p&gt;</pre>
+    </section>
+
+    <!-- ============ ESPACIADO ============ -->
+    <section class="g-seccion" id="espaciado">
+      <h2>Espaciado</h2>
+      <p class="ds-texto-sec">Todo margen y relleno sale de esta escala (múltiplos de 4px).</p>
+      <div class="g-demo" style="border-radius:var(--radio-lg)">
+        <div class="g-esp">
+          <div><div style="width:4px;height:4px"></div><span>--esp-1<br>4</span></div>
+          <div><div style="width:8px;height:8px"></div><span>--esp-2<br>8</span></div>
+          <div><div style="width:12px;height:12px"></div><span>--esp-3<br>12</span></div>
+          <div><div style="width:16px;height:16px"></div><span>--esp-4<br>16</span></div>
+          <div><div style="width:24px;height:24px"></div><span>--esp-5<br>24</span></div>
+          <div><div style="width:32px;height:32px"></div><span>--esp-6<br>32</span></div>
+          <div><div style="width:48px;height:48px"></div><span>--esp-7<br>48</span></div>
+          <div><div style="width:64px;height:64px"></div><span>--esp-8<br>64</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LAYOUT ============ -->
+    <section class="g-seccion" id="layout">
+      <h2>Estructura de página</h2>
+      <p class="ds-texto-sec">Todas las pantallas comparten encabezado azul, menú lateral, contenido y pie. Ya viene armado en <code>plantilla-modulo.html</code>; en celular el menú se oculta tras el botón ☰.</p>
+      <div class="g-demo">
+        <div style="display:grid;grid-template-columns:120px 1fr;grid-template-rows:36px 110px 28px;gap:4px;font-size:var(--texto-xs);font-weight:600;text-align:center">
+          <div style="grid-column:1/3;background:var(--azul-900);color:#fff;display:flex;align-items:center;justify-content:center;border-bottom:3px solid var(--azul-500)">.ds-header</div>
+          <div style="background:var(--blanco);border:1px solid var(--gris-300);display:flex;align-items:center;justify-content:center">.ds-sidebar</div>
+          <div style="background:var(--azul-50);border:1px dashed var(--azul-200);display:flex;align-items:center;justify-content:center;color:var(--azul-800)">.ds-main — tu módulo aquí</div>
+          <div style="grid-column:1/3;background:var(--blanco);border:1px solid var(--gris-300);display:flex;align-items:center;justify-content:center;color:var(--gris-500)">.ds-footer</div>
+        </div>
+      </div>
+      <pre class="g-code">&lt;!-- Encabezado de cada pantalla dentro de &lt;main class="ds-main"&gt; --&gt;
+&lt;ol class="ds-breadcrumb"&gt;
+  &lt;li&gt;&lt;a href="#"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Nombre del módulo&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="ds-page-header"&gt;
+  &lt;h1&gt;Nombre del módulo&lt;/h1&gt;
+  &lt;button class="ds-btn ds-btn--primario"&gt;+ Nuevo registro&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Rejillas: ds-grid + ds-grid-2 / ds-grid-3 / ds-grid-4 --&gt;
+&lt;div class="ds-grid ds-grid-3"&gt; ... &lt;/div&gt;</pre>
+    </section>
+
+    <!-- ============ BOTONES ============ -->
+    <section class="g-seccion" id="botones">
+      <h2>Botones</h2>
+      <div class="g-demo ds-fila">
+        <button class="ds-btn ds-btn--primario">Guardar</button>
+        <button class="ds-btn ds-btn--secundario">Cancelar</button>
+        <button class="ds-btn ds-btn--texto">Ver detalle</button>
+        <button class="ds-btn ds-btn--peligro">Eliminar</button>
+        <button class="ds-btn ds-btn--primario" disabled>Deshabilitado</button>
+        <button class="ds-btn ds-btn--primario ds-btn--sm">Pequeño</button>
+      </div>
+      <pre class="g-code">&lt;button class="ds-btn ds-btn--primario"&gt;Guardar&lt;/button&gt;      &lt;!-- acción principal, 1 por pantalla --&gt;
+&lt;button class="ds-btn ds-btn--secundario"&gt;Cancelar&lt;/button&gt;   &lt;!-- acción alternativa --&gt;
+&lt;button class="ds-btn ds-btn--texto"&gt;Ver detalle&lt;/button&gt;     &lt;!-- acción menor --&gt;
+&lt;button class="ds-btn ds-btn--peligro"&gt;Eliminar&lt;/button&gt;     &lt;!-- solo acciones destructivas --&gt;
+&lt;button class="ds-btn ds-btn--primario ds-btn--sm"&gt;Pequeño&lt;/button&gt;  &lt;!-- dentro de tablas --&gt;</pre>
+    </section>
+
+    <!-- ============ FORMULARIOS ============ -->
+    <section class="g-seccion" id="formularios">
+      <h2>Formularios</h2>
+      <div class="g-demo">
+        <div class="ds-grid ds-grid-2" style="gap:0 var(--esp-5)">
+          <div class="ds-campo">
+            <label class="ds-label" for="f1">Nombre completo<span class="req">*</span></label>
+            <input class="ds-input" id="f1" placeholder="Ej. María López">
+          </div>
+          <div class="ds-campo">
+            <label class="ds-label" for="f2">Área</label>
+            <select class="ds-select" id="f2"><option>Selecciona una opción</option><option>Administración</option></select>
+          </div>
+          <div class="ds-campo ds-campo--error">
+            <label class="ds-label" for="f3">Correo<span class="req">*</span></label>
+            <input class="ds-input" id="f3" value="correo-invalido">
+            <span class="ds-campo__error">Ingresa un correo válido.</span>
+          </div>
+          <div class="ds-campo">
+            <label class="ds-label" for="f4">Fecha</label>
+            <input class="ds-input" id="f4" type="date">
+            <span class="ds-texto-ayuda">Formato día/mes/año.</span>
+          </div>
+        </div>
+        <div class="ds-campo">
+          <label class="ds-label" for="f5">Observaciones</label>
+          <textarea class="ds-textarea" id="f5"></textarea>
+        </div>
+        <label class="ds-check"><input type="checkbox" checked> Acepto los términos</label>
+        <div class="ds-form-acciones">
+          <button class="ds-btn ds-btn--secundario">Cancelar</button>
+          <button class="ds-btn ds-btn--primario">Guardar</button>
+        </div>
+      </div>
+      <pre class="g-code">&lt;div class="ds-campo"&gt;
+  &lt;label class="ds-label" for="nombre"&gt;Nombre&lt;span class="req"&gt;*&lt;/span&gt;&lt;/label&gt;
+  &lt;input class="ds-input" id="nombre"&gt;
+  &lt;span class="ds-texto-ayuda"&gt;Texto de ayuda opcional&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Con error: agrega ds-campo--error y el mensaje --&gt;
+&lt;div class="ds-campo ds-campo--error"&gt;
+  &lt;label class="ds-label" for="correo"&gt;Correo&lt;/label&gt;
+  &lt;input class="ds-input" id="correo"&gt;
+  &lt;span class="ds-campo__error"&gt;Ingresa un correo válido.&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;select class="ds-select"&gt;...&lt;/select&gt;
+&lt;textarea class="ds-textarea"&gt;&lt;/textarea&gt;
+&lt;label class="ds-check"&gt;&lt;input type="checkbox"&gt; Opción&lt;/label&gt;
+
+&lt;!-- Botones al final: Cancelar a la izquierda, Guardar a la derecha --&gt;
+&lt;div class="ds-form-acciones"&gt;
+  &lt;button class="ds-btn ds-btn--secundario"&gt;Cancelar&lt;/button&gt;
+  &lt;button class="ds-btn ds-btn--primario"&gt;Guardar&lt;/button&gt;
+&lt;/div&gt;</pre>
+    </section>
+
+    <!-- ============ TABLAS ============ -->
+    <section class="g-seccion" id="tablas">
+      <h2>Tablas</h2>
+      <div class="g-demo">
+        <div class="ds-tabla-wrap">
+          <table class="ds-tabla">
+            <thead><tr><th>Folio</th><th>Solicitante</th><th>Estado</th><th class="num">Monto</th><th>Acciones</th></tr></thead>
+            <tbody>
+              <tr><td>A-001</td><td>María López</td><td><span class="ds-badge ds-badge--exito">Aprobado</span></td><td class="num">$12,500.00</td><td><button class="ds-btn ds-btn--texto ds-btn--sm">Ver</button></td></tr>
+              <tr><td>A-002</td><td>Juan Pérez</td><td><span class="ds-badge ds-badge--aviso">Pendiente</span></td><td class="num">$3,200.00</td><td><button class="ds-btn ds-btn--texto ds-btn--sm">Ver</button></td></tr>
+              <tr><td>A-003</td><td>Ana Torres</td><td><span class="ds-badge ds-badge--error">Rechazado</span></td><td class="num">$870.50</td><td><button class="ds-btn ds-btn--texto ds-btn--sm">Ver</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <nav class="ds-paginacion"><a href="#tablas">‹</a><span class="activo">1</span><a href="#tablas">2</a><a href="#tablas">3</a><a href="#tablas">›</a></nav>
+      </div>
+      <pre class="g-code">&lt;div class="ds-tabla-wrap"&gt;
+  &lt;table class="ds-tabla"&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;&lt;th&gt;Folio&lt;/th&gt;&lt;th&gt;Nombre&lt;/th&gt;&lt;th class="num"&gt;Monto&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;A-001&lt;/td&gt;&lt;td&gt;María López&lt;/td&gt;&lt;td class="num"&gt;$12,500.00&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;
+&lt;!-- Números y montos siempre con class="num" (alineados a la derecha) --&gt;</pre>
+    </section>
+
+    <!-- ============ TARJETAS ============ -->
+    <section class="g-seccion" id="tarjetas">
+      <h2>Tarjetas e indicadores</h2>
+      <div class="g-demo">
+        <div class="ds-grid ds-grid-3" style="margin-bottom:var(--esp-5)">
+          <div class="ds-card ds-kpi"><div class="ds-kpi__valor">1,248</div><div class="ds-kpi__etiqueta">Registros totales</div></div>
+          <div class="ds-card ds-kpi"><div class="ds-kpi__valor">86%</div><div class="ds-kpi__etiqueta">Atendidos a tiempo</div></div>
+          <div class="ds-card ds-kpi"><div class="ds-kpi__valor">32</div><div class="ds-kpi__etiqueta">Pendientes</div></div>
+        </div>
+        <div class="ds-card">
+          <h3 class="ds-card__titulo">Título de la tarjeta</h3>
+          <p style="margin:0">Las tarjetas agrupan información relacionada.</p>
+          <div class="ds-card__pie"><button class="ds-btn ds-btn--primario ds-btn--sm">Acción</button></div>
+        </div>
+      </div>
+      <pre class="g-code">&lt;div class="ds-card"&gt;
+  &lt;h3 class="ds-card__titulo"&gt;Título&lt;/h3&gt;
+  &lt;p&gt;Contenido&lt;/p&gt;
+  &lt;div class="ds-card__pie"&gt;&lt;button class="ds-btn ds-btn--primario ds-btn--sm"&gt;Acción&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Indicador --&gt;
+&lt;div class="ds-card ds-kpi"&gt;
+  &lt;div class="ds-kpi__valor"&gt;1,248&lt;/div&gt;
+  &lt;div class="ds-kpi__etiqueta"&gt;Registros totales&lt;/div&gt;
+&lt;/div&gt;</pre>
+    </section>
+
+    <!-- ============ ALERTAS ============ -->
+    <section class="g-seccion" id="alertas">
+      <h2>Alertas</h2>
+      <div class="g-demo">
+        <div class="ds-alerta ds-alerta--info"><strong>Información</strong>El periodo de captura cierra el viernes.</div>
+        <div class="ds-alerta ds-alerta--exito"><strong>Guardado</strong>El registro se guardó correctamente.</div>
+        <div class="ds-alerta ds-alerta--aviso"><strong>Atención</strong>Hay 3 campos sin revisar.</div>
+        <div class="ds-alerta ds-alerta--error" style="margin:0"><strong>Error</strong>No se pudo guardar. Intenta de nuevo.</div>
+      </div>
+      <pre class="g-code">&lt;div class="ds-alerta ds-alerta--info"&gt;&lt;strong&gt;Título&lt;/strong&gt;Mensaje&lt;/div&gt;
+&lt;!-- Variantes: ds-alerta--info · ds-alerta--exito · ds-alerta--aviso · ds-alerta--error --&gt;</pre>
+    </section>
+
+    <!-- ============ ETIQUETAS ============ -->
+    <section class="g-seccion" id="etiquetas">
+      <h2>Etiquetas de estado</h2>
+      <div class="g-demo ds-fila">
+        <span class="ds-badge ds-badge--info">En proceso</span>
+        <span class="ds-badge ds-badge--exito">Aprobado</span>
+        <span class="ds-badge ds-badge--aviso">Pendiente</span>
+        <span class="ds-badge ds-badge--error">Rechazado</span>
+        <span class="ds-badge ds-badge--neutro">Borrador</span>
+      </div>
+      <pre class="g-code">&lt;span class="ds-badge ds-badge--exito"&gt;Aprobado&lt;/span&gt;
+&lt;!-- Mismo significado en TODOS los módulos:
+     info = en proceso · exito = aprobado/activo · aviso = pendiente
+     error = rechazado/cancelado · neutro = borrador/inactivo --&gt;</pre>
+    </section>
+
+    <!-- ============ PESTAÑAS ============ -->
+    <section class="g-seccion" id="pestanas">
+      <h2>Pestañas</h2>
+      <div class="g-demo">
+        <div class="ds-tabs" style="margin:0">
+          <button class="activo">General</button><button>Documentos</button><button>Historial</button>
+        </div>
+      </div>
+      <pre class="g-code">&lt;div class="ds-tabs"&gt;
+  &lt;a href="#" class="activo"&gt;General&lt;/a&gt;
+  &lt;a href="#"&gt;Documentos&lt;/a&gt;
+  &lt;a href="#"&gt;Historial&lt;/a&gt;
+&lt;/div&gt;</pre>
+    </section>
+
+    <!-- ============ PAGINACIÓN ============ -->
+    <section class="g-seccion" id="paginacion">
+      <h2>Paginación</h2>
+      <pre class="g-code" style="border-radius:var(--radio-lg)">&lt;nav class="ds-paginacion"&gt;
+  &lt;a href="#"&gt;‹&lt;/a&gt;
+  &lt;span class="activo"&gt;1&lt;/span&gt;
+  &lt;a href="#"&gt;2&lt;/a&gt;
+  &lt;a href="#"&gt;›&lt;/a&gt;
+&lt;/nav&gt;
+&lt;!-- Va debajo de la tabla (ver ejemplo en Tablas) --&gt;</pre>
+    </section>
+
+    <!-- ============ MODAL ============ -->
+    <section class="g-seccion" id="modal">
+      <h2>Modal (ventana de confirmación)</h2>
+      <div class="g-demo">
+        <button class="ds-btn ds-btn--peligro" onclick="document.getElementById('demoModal').classList.add('abierto')">Eliminar registro</button>
+      </div>
+      <pre class="g-code">&lt;div class="ds-modal-fondo" id="miModal"&gt;
+  &lt;div class="ds-modal" role="dialog" aria-modal="true"&gt;
+    &lt;div class="ds-modal__cabecera"&gt;¿Eliminar registro?&lt;/div&gt;
+    &lt;div class="ds-modal__cuerpo"&gt;Esta acción no se puede deshacer.&lt;/div&gt;
+    &lt;div class="ds-modal__pie"&gt;
+      &lt;button class="ds-btn ds-btn--secundario"
+        onclick="document.getElementById('miModal').classList.remove('abierto')"&gt;Cancelar&lt;/button&gt;
+      &lt;button class="ds-btn ds-btn--peligro"&gt;Eliminar&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- Abrir: document.getElementById('miModal').classList.add('abierto') --&gt;</pre>
+    </section>
+
+    <!-- ============ VACÍO ============ -->
+    <section class="g-seccion" id="vacio">
+      <h2>Estado vacío</h2>
+      <div class="g-demo">
+        <div class="ds-vacio">
+          <h3>Aún no hay registros</h3>
+          <p>Cuando agregues el primero aparecerá aquí.</p>
+          <button class="ds-btn ds-btn--primario">+ Nuevo registro</button>
+        </div>
+      </div>
+      <pre class="g-code">&lt;div class="ds-vacio"&gt;
+  &lt;h3&gt;Aún no hay registros&lt;/h3&gt;
+  &lt;p&gt;Cuando agregues el primero aparecerá aquí.&lt;/p&gt;
+  &lt;button class="ds-btn ds-btn--primario"&gt;+ Nuevo registro&lt;/button&gt;
+&lt;/div&gt;</pre>
+    </section>
+
+  </main>
+
+  <footer class="ds-footer">Guía de Diseño Institucional v1.0 · Cambios solo a través del responsable del diseño</footer>
+</div>
+
+<!-- Modal de demostración -->
+<div class="ds-modal-fondo" id="demoModal" onclick="if(event.target===this)this.classList.remove('abierto')">
+  <div class="ds-modal" role="dialog" aria-modal="true">
+    <div class="ds-modal__cabecera">¿Eliminar registro?</div>
+    <div class="ds-modal__cuerpo">Esta acción no se puede deshacer.</div>
+    <div class="ds-modal__pie">
+      <button class="ds-btn ds-btn--secundario" onclick="document.getElementById('demoModal').classList.remove('abierto')">Cancelar</button>
+      <button class="ds-btn ds-btn--peligro" onclick="document.getElementById('demoModal').classList.remove('abierto')">Eliminar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Botón "Copiar" en cada bloque de código
+  document.querySelectorAll('.g-code').forEach(function (pre) {
+    var b = document.createElement('button');
+    b.className = 'g-copiar'; b.textContent = 'Copiar';
+    b.onclick = function () {
+      var txt = pre.textContent.replace(/Copiar$|¡Copiado!$/, '');
+      navigator.clipboard.writeText(txt).then(function () { b.textContent = '¡Copiado!'; setTimeout(function () { b.textContent = 'Copiar'; }, 1500); });
+    };
+    pre.appendChild(b);
+  });
+  // Marcar sección activa en el menú
+  var links = document.querySelectorAll('.ds-sidebar a');
+  links.forEach(function (a) { a.addEventListener('click', function () { links.forEach(function (x) { x.classList.remove('activo'); }); a.classList.add('activo'); }); });
+</script>
+</body>
+</html>

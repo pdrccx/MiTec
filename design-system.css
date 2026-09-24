@@ -1,0 +1,331 @@
+/* =====================================================================
+   SISTEMA DE DISEÑO INSTITUCIONAL · v1.0
+   ---------------------------------------------------------------------
+   REGLAS PARA TODOS LOS PARTICIPANTES
+   1. NO edites este archivo. Si necesitas algo nuevo, pídelo al
+      responsable del diseño para agregarlo aquí y que todos lo tengan.
+   2. NO escribas colores, tamaños ni fuentes "a mano" en tu módulo.
+      Usa siempre las variables (var(--...)) y las clases .ds-*.
+   3. Todo módulo parte de plantilla-modulo.html.
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap');
+
+/* ---------- 1. TOKENS (variables) ---------- */
+:root {
+  /* Azul institucional */
+  --azul-900: #0A2A5E;   /* encabezado, títulos fuertes */
+  --azul-800: #0D3B82;   /* color principal (botones, enlaces activos) */
+  --azul-700: #1550A8;   /* hover */
+  --azul-500: #2F73D9;   /* acentos, foco */
+  --azul-200: #BCD3F5;   /* bordes suaves azules */
+  --azul-100: #E6EEFB;   /* fondos de resalte */
+  --azul-50:  #F3F7FD;   /* fondo de página */
+
+  /* Neutros */
+  --gris-900: #1B2430;   /* texto principal */
+  --gris-700: #44505F;   /* texto secundario */
+  --gris-500: #7A8594;   /* texto de ayuda / deshabilitado */
+  --gris-300: #D4DAE2;   /* bordes */
+  --gris-100: #EEF1F5;   /* fondos alternos (filas de tabla) */
+  --blanco:   #FFFFFF;
+
+  /* Estados (solo para mensajes, nunca decorativos) */
+  --exito:  #1E7B4A;  --exito-fondo:  #E5F4EC;
+  --aviso:  #9A6300;  --aviso-fondo:  #FFF4DB;
+  --error:  #B42318;  --error-fondo:  #FDECEA;
+  --info:   var(--azul-800); --info-fondo: var(--azul-100);
+
+  /* Tipografía */
+  --fuente: 'Source Sans 3', 'Segoe UI', Roboto, Arial, sans-serif;
+  --texto-xs: 0.75rem;   /* 12px */
+  --texto-sm: 0.875rem;  /* 14px */
+  --texto-md: 1rem;      /* 16px  base */
+  --texto-lg: 1.25rem;   /* 20px  h3 */
+  --texto-xl: 1.5rem;    /* 24px  h2 */
+  --texto-2xl: 2rem;     /* 32px  h1 */
+
+  /* Espaciado (múltiplos de 4px) */
+  --esp-1: 4px;  --esp-2: 8px;  --esp-3: 12px; --esp-4: 16px;
+  --esp-5: 24px; --esp-6: 32px; --esp-7: 48px; --esp-8: 64px;
+
+  /* Bordes y sombras */
+  --radio: 6px;
+  --radio-lg: 10px;
+  --sombra: 0 1px 3px rgba(10, 42, 94, .10), 0 1px 2px rgba(10, 42, 94, .06);
+  --sombra-lg: 0 8px 24px rgba(10, 42, 94, .14);
+
+  /* Medidas de layout */
+  --alto-header: 64px;
+  --ancho-sidebar: 248px;
+  --ancho-max: 1200px;
+}
+
+/* ---------- 2. BASE ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 16px; }
+body {
+  margin: 0;
+  font-family: var(--fuente);
+  font-size: var(--texto-md);
+  line-height: 1.5;
+  color: var(--gris-900);
+  background: var(--azul-50);
+}
+h1, h2, h3, h4 { color: var(--azul-900); line-height: 1.25; margin: 0 0 var(--esp-4); font-weight: 700; }
+h1 { font-size: var(--texto-2xl); }
+h2 { font-size: var(--texto-xl); }
+h3 { font-size: var(--texto-lg); font-weight: 600; }
+h4 { font-size: var(--texto-md); font-weight: 600; }
+p  { margin: 0 0 var(--esp-4); }
+a  { color: var(--azul-800); text-decoration: underline; text-underline-offset: 2px; }
+a:hover { color: var(--azul-700); }
+:focus-visible { outline: 3px solid var(--azul-500); outline-offset: 2px; }
+.ds-texto-sec   { color: var(--gris-700); }
+.ds-texto-ayuda { color: var(--gris-500); font-size: var(--texto-sm); }
+
+/* ---------- 3. LAYOUT GENERAL ---------- */
+.ds-app {
+  display: grid;
+  grid-template-columns: var(--ancho-sidebar) 1fr;
+  grid-template-rows: var(--alto-header) 1fr auto;
+  grid-template-areas: "header header" "sidebar main" "footer footer";
+  min-height: 100vh;
+}
+
+/* Encabezado institucional */
+.ds-header {
+  grid-area: header;
+  display: flex; align-items: center; gap: var(--esp-4);
+  padding: 0 var(--esp-5);
+  background: var(--azul-900);
+  color: var(--blanco);
+  border-bottom: 4px solid var(--azul-500);
+  position: sticky; top: 0; z-index: 50;
+}
+.ds-header__logo { display: flex; align-items: center; gap: var(--esp-3); font-weight: 700; font-size: var(--texto-lg); color: var(--blanco); text-decoration: none; }
+.ds-header__logo img { height: 44px; background: var(--blanco); padding: 4px 8px; border-radius: var(--radio); }
+.ds-header__modulo { color: var(--azul-200); font-size: var(--texto-sm); border-left: 1px solid rgba(255,255,255,.25); padding-left: var(--esp-4); }
+.ds-header__usuario { margin-left: auto; font-size: var(--texto-sm); color: var(--azul-100); }
+.ds-header__menu { display: none; background: none; border: 0; color: var(--blanco); font-size: 24px; cursor: pointer; }
+
+/* Menú lateral */
+.ds-sidebar {
+  grid-area: sidebar;
+  background: var(--blanco);
+  border-right: 1px solid var(--gris-300);
+  padding: var(--esp-4) 0;
+}
+.ds-sidebar__titulo { padding: var(--esp-2) var(--esp-5); font-size: var(--texto-xs); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--gris-500); }
+.ds-sidebar a {
+  display: block;
+  padding: var(--esp-2) var(--esp-5);
+  color: var(--gris-700);
+  text-decoration: none;
+  border-left: 4px solid transparent;
+}
+.ds-sidebar a:hover { background: var(--azul-50); color: var(--azul-800); }
+.ds-sidebar a.activo { background: var(--azul-100); color: var(--azul-900); font-weight: 600; border-left-color: var(--azul-800); }
+
+/* Contenido */
+.ds-main { grid-area: main; padding: var(--esp-6); max-width: var(--ancho-max); width: 100%; }
+.ds-page-header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--esp-4); margin-bottom: var(--esp-5); }
+.ds-page-header h1 { margin: 0; }
+
+/* Pie */
+.ds-footer {
+  grid-area: footer;
+  padding: var(--esp-4) var(--esp-5);
+  background: var(--blanco);
+  border-top: 1px solid var(--gris-300);
+  color: var(--gris-500);
+  font-size: var(--texto-sm);
+  text-align: center;
+}
+
+/* Rejillas utilitarias */
+.ds-grid   { display: grid; gap: var(--esp-5); }
+.ds-grid-2 { grid-template-columns: repeat(2, 1fr); }
+.ds-grid-3 { grid-template-columns: repeat(3, 1fr); }
+.ds-grid-4 { grid-template-columns: repeat(4, 1fr); }
+.ds-fila   { display: flex; flex-wrap: wrap; gap: var(--esp-3); align-items: center; }
+
+/* ---------- 4. MIGAS DE PAN ---------- */
+.ds-breadcrumb { display: flex; flex-wrap: wrap; gap: var(--esp-2); font-size: var(--texto-sm); color: var(--gris-500); margin-bottom: var(--esp-2); list-style: none; padding: 0; }
+.ds-breadcrumb li + li::before { content: "/"; margin-right: var(--esp-2); color: var(--gris-300); }
+.ds-breadcrumb a { color: var(--gris-700); text-decoration: none; }
+.ds-breadcrumb a:hover { color: var(--azul-800); text-decoration: underline; }
+
+/* ---------- 5. TARJETAS ---------- */
+.ds-card {
+  background: var(--blanco);
+  border: 1px solid var(--gris-300);
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra);
+  padding: var(--esp-5);
+}
+.ds-card__titulo { font-size: var(--texto-lg); font-weight: 600; color: var(--azul-900); margin: 0 0 var(--esp-3); }
+.ds-card__pie { margin-top: var(--esp-4); padding-top: var(--esp-4); border-top: 1px solid var(--gris-100); display: flex; gap: var(--esp-3); justify-content: flex-end; }
+
+/* Indicador (KPI) */
+.ds-kpi { border-top: 4px solid var(--azul-800); }
+.ds-kpi__valor { font-size: var(--texto-2xl); font-weight: 700; color: var(--azul-900); line-height: 1.1; }
+.ds-kpi__etiqueta { font-size: var(--texto-sm); color: var(--gris-700); }
+
+/* ---------- 6. BOTONES ---------- */
+.ds-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--esp-2);
+  min-height: 40px;
+  padding: 0 var(--esp-5);
+  font: 600 var(--texto-md)/1 var(--fuente);
+  border-radius: var(--radio);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: background .15s, border-color .15s;
+}
+.ds-btn--primario   { background: var(--azul-800); color: var(--blanco); }
+.ds-btn--primario:hover { background: var(--azul-700); color: var(--blanco); }
+.ds-btn--secundario { background: var(--blanco); color: var(--azul-800); border-color: var(--azul-800); }
+.ds-btn--secundario:hover { background: var(--azul-100); }
+.ds-btn--texto      { background: transparent; color: var(--azul-800); padding: 0 var(--esp-3); }
+.ds-btn--texto:hover { background: var(--azul-50); }
+.ds-btn--peligro    { background: var(--error); color: var(--blanco); }
+.ds-btn--peligro:hover { background: #8F1C13; }
+.ds-btn--sm { min-height: 32px; padding: 0 var(--esp-3); font-size: var(--texto-sm); }
+.ds-btn:disabled, .ds-btn[aria-disabled="true"] { background: var(--gris-100); color: var(--gris-500); border-color: var(--gris-300); cursor: not-allowed; }
+
+/* ---------- 7. FORMULARIOS ---------- */
+.ds-campo { display: flex; flex-direction: column; gap: var(--esp-1); margin-bottom: var(--esp-4); }
+.ds-label { font-weight: 600; font-size: var(--texto-sm); color: var(--gris-900); }
+.ds-label .req { color: var(--error); margin-left: 2px; }
+.ds-input, .ds-select, .ds-textarea {
+  width: 100%;
+  min-height: 40px;
+  padding: var(--esp-2) var(--esp-3);
+  font: var(--texto-md) var(--fuente);
+  color: var(--gris-900);
+  background: var(--blanco);
+  border: 1px solid var(--gris-300);
+  border-radius: var(--radio);
+}
+.ds-textarea { min-height: 96px; resize: vertical; }
+.ds-input:hover, .ds-select:hover, .ds-textarea:hover { border-color: var(--gris-500); }
+.ds-input:focus, .ds-select:focus, .ds-textarea:focus { outline: none; border-color: var(--azul-500); box-shadow: 0 0 0 3px var(--azul-100); }
+.ds-input:disabled, .ds-select:disabled { background: var(--gris-100); color: var(--gris-500); }
+.ds-campo--error .ds-input, .ds-campo--error .ds-select, .ds-campo--error .ds-textarea { border-color: var(--error); }
+.ds-campo__error { color: var(--error); font-size: var(--texto-sm); }
+.ds-check { display: flex; align-items: center; gap: var(--esp-2); cursor: pointer; }
+.ds-check input { width: 18px; height: 18px; accent-color: var(--azul-800); }
+.ds-form-acciones { display: flex; gap: var(--esp-3); justify-content: flex-end; margin-top: var(--esp-5); }
+
+/* ---------- 8. TABLAS ---------- */
+.ds-tabla-wrap { overflow-x: auto; background: var(--blanco); border: 1px solid var(--gris-300); border-radius: var(--radio-lg); }
+.ds-tabla { width: 100%; border-collapse: collapse; font-size: var(--texto-sm); }
+.ds-tabla th {
+  background: var(--azul-900); color: var(--blanco);
+  text-align: left; font-weight: 600;
+  padding: var(--esp-3) var(--esp-4);
+  white-space: nowrap;
+}
+.ds-tabla td { padding: var(--esp-3) var(--esp-4); border-top: 1px solid var(--gris-300); }
+.ds-tabla tbody tr:nth-child(even) { background: var(--gris-100); }
+.ds-tabla tbody tr:hover { background: var(--azul-100); }
+.ds-tabla .num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ---------- 9. ALERTAS ---------- */
+.ds-alerta { padding: var(--esp-3) var(--esp-4); border-radius: var(--radio); border-left: 4px solid; margin-bottom: var(--esp-4); }
+.ds-alerta strong { display: block; margin-bottom: 2px; }
+.ds-alerta--info  { background: var(--info-fondo);  border-color: var(--info);  color: var(--azul-900); }
+.ds-alerta--exito { background: var(--exito-fondo); border-color: var(--exito); color: #0F4A2B; }
+.ds-alerta--aviso { background: var(--aviso-fondo); border-color: var(--aviso); color: #5C3B00; }
+.ds-alerta--error { background: var(--error-fondo); border-color: var(--error); color: #7A160F; }
+
+/* ---------- 10. ETIQUETAS (badges) ---------- */
+.ds-badge { display: inline-block; padding: 2px var(--esp-2); border-radius: 999px; font-size: var(--texto-xs); font-weight: 600; }
+.ds-badge--info    { background: var(--azul-100);   color: var(--azul-800); }
+.ds-badge--exito   { background: var(--exito-fondo); color: var(--exito); }
+.ds-badge--aviso   { background: var(--aviso-fondo); color: var(--aviso); }
+.ds-badge--error   { background: var(--error-fondo); color: var(--error); }
+.ds-badge--neutro  { background: var(--gris-100);    color: var(--gris-700); }
+
+/* ---------- 11. PESTAÑAS ---------- */
+.ds-tabs { display: flex; gap: var(--esp-1); border-bottom: 1px solid var(--gris-300); margin-bottom: var(--esp-5); overflow-x: auto; }
+.ds-tabs a, .ds-tabs button {
+  padding: var(--esp-3) var(--esp-4);
+  background: none; border: 0; border-bottom: 3px solid transparent;
+  font: 600 var(--texto-md) var(--fuente);
+  color: var(--gris-700); text-decoration: none; cursor: pointer; white-space: nowrap;
+}
+.ds-tabs a:hover, .ds-tabs button:hover { color: var(--azul-800); }
+.ds-tabs .activo { color: var(--azul-900); border-bottom-color: var(--azul-800); }
+
+/* ---------- 12. PAGINACIÓN ---------- */
+.ds-paginacion { display: flex; gap: var(--esp-1); justify-content: flex-end; margin-top: var(--esp-4); }
+.ds-paginacion a, .ds-paginacion span {
+  min-width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--gris-300); border-radius: var(--radio);
+  background: var(--blanco); color: var(--gris-700); text-decoration: none; font-size: var(--texto-sm);
+}
+.ds-paginacion a:hover { border-color: var(--azul-800); color: var(--azul-800); }
+.ds-paginacion .activo { background: var(--azul-800); border-color: var(--azul-800); color: var(--blanco); }
+
+/* ---------- 13. MODAL ---------- */
+.ds-modal-fondo { position: fixed; inset: 0; background: rgba(10, 42, 94, .45); display: none; align-items: center; justify-content: center; padding: var(--esp-4); z-index: 100; }
+.ds-modal-fondo.abierto { display: flex; }
+.ds-modal { background: var(--blanco); border-radius: var(--radio-lg); box-shadow: var(--sombra-lg); width: 100%; max-width: 520px; }
+.ds-modal__cabecera { padding: var(--esp-4) var(--esp-5); border-bottom: 1px solid var(--gris-300); font-weight: 700; color: var(--azul-900); font-size: var(--texto-lg); }
+.ds-modal__cuerpo { padding: var(--esp-5); }
+.ds-modal__pie { padding: var(--esp-4) var(--esp-5); border-top: 1px solid var(--gris-300); display: flex; justify-content: flex-end; gap: var(--esp-3); }
+
+/* ---------- 14. ESTADO VACÍO ---------- */
+.ds-vacio { text-align: center; padding: var(--esp-7) var(--esp-5); color: var(--gris-700); background: var(--blanco); border: 1px dashed var(--gris-300); border-radius: var(--radio-lg); }
+.ds-vacio h3 { margin-bottom: var(--esp-2); }
+
+/* ---------- 15. PORTADA (solo página principal) ---------- */
+.ds-hero {
+  background: linear-gradient(135deg, var(--azul-900) 0%, var(--azul-800) 60%, var(--azul-700) 100%);
+  color: var(--blanco);
+  border-radius: var(--radio-lg);
+  padding: var(--esp-7) var(--esp-6);
+  margin-bottom: var(--esp-6);
+  box-shadow: var(--sombra-lg);
+}
+.ds-hero h1 { color: var(--blanco); font-size: 2.25rem; margin-bottom: var(--esp-3); }
+.ds-hero p { color: var(--azul-100); font-size: var(--texto-lg); max-width: 640px; margin-bottom: var(--esp-5); }
+.ds-hero__etiqueta { display: inline-block; font-size: var(--texto-xs); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--azul-200); margin-bottom: var(--esp-3); }
+.ds-hero .ds-btn--primario { background: var(--blanco); color: var(--azul-900); }
+.ds-hero .ds-btn--primario:hover { background: var(--azul-100); }
+.ds-hero .ds-btn--secundario { background: transparent; color: var(--blanco); border-color: rgba(255,255,255,.6); }
+.ds-hero .ds-btn--secundario:hover { background: rgba(255,255,255,.1); }
+
+/* Tarjeta de módulo (acceso a cada módulo desde el principal) */
+.ds-modulo { display: flex; flex-direction: column; border-top: 4px solid var(--azul-800); }
+.ds-modulo__icono { width: 48px; height: 48px; border-radius: var(--radio); background: var(--azul-100); color: var(--azul-800); display: flex; align-items: center; justify-content: center; margin-bottom: var(--esp-4); }
+.ds-modulo__icono svg { width: 26px; height: 26px; }
+.ds-modulo__partes { list-style: none; padding: 0; margin: 0 0 var(--esp-5); border-top: 1px solid var(--gris-100); }
+.ds-modulo__partes li { border-bottom: 1px solid var(--gris-100); }
+.ds-modulo__partes a { display: flex; justify-content: space-between; padding: var(--esp-2) 0; color: var(--gris-700); text-decoration: none; font-size: var(--texto-sm); }
+.ds-modulo__partes a::after { content: "›"; color: var(--gris-500); }
+.ds-modulo__partes a:hover { color: var(--azul-800); }
+.ds-modulo .ds-btn { margin-top: auto; }
+
+/* ---------- 16. RESPONSIVO ---------- */
+@media (max-width: 960px) {
+  .ds-grid-3, .ds-grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .ds-app { grid-template-columns: 1fr; grid-template-areas: "header" "main" "footer"; }
+  .ds-header { padding: 0 var(--esp-4); }
+  .ds-header__menu { display: block; }
+  .ds-header__modulo, .ds-header__usuario, .ds-header__nombre { display: none; }
+  .ds-sidebar { display: none; position: fixed; top: var(--alto-header); left: 0; bottom: 0; width: 80%; max-width: 300px; z-index: 60; box-shadow: var(--sombra-lg); overflow-y: auto; }
+  .ds-sidebar.abierto { display: block; }
+  .ds-main { padding: var(--esp-5) var(--esp-4); }
+  .ds-grid-2, .ds-grid-3, .ds-grid-4 { grid-template-columns: 1fr; }
+  .ds-hero { padding: var(--esp-6) var(--esp-5); }
+  .ds-hero h1 { font-size: var(--texto-2xl); }
+  .ds-form-acciones { flex-direction: column-reverse; }
+  .ds-form-acciones .ds-btn { width: 100%; }
+}

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jorge Leonardo — CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1547e8;
+    --blue-deep: #0a1f4d;
+    --gray: #5b6472;
+    --gray-light: #eef1f5;
+    --gray-line: #dde2e9;
+    --ink: #10151c;
+    --white: #ffffff;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--white);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* HERO — diagonal-cut band, the one bold gesture on the page */
+  .hero {
+    position: relative;
+    background: var(--blue-deep);
+    color: var(--white);
+    padding: 64px 40px 96px;
+    clip-path: polygon(0 0, 100% 0, 100% 82%, 0 100%);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, var(--blue) 0%, transparent 68%);
+    opacity: 0.55;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    left: 40px;
+    right: 40px;
+    bottom: 78px;
+    height: 1px;
+    background: rgba(255,255,255,0.18);
+  }
+  .hero-inner { max-width: 1040px; margin: 0 auto; position: relative; }
+  .role-tag {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem;
+    color: #a9bcff;
+    margin: 0 0 16px;
+    letter-spacing: 0.01em;
+  }
+  h1.name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.6rem, 6.4vw, 4rem);
+    line-height: 1.02;
+    margin: 0 0 26px;
+    letter-spacing: -0.01em;
+  }
+  .hero-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    font-size: 0.92rem;
+    color: #c3cdec;
+  }
+  .hero-contact a { color: var(--white); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.35); }
+  .hero-contact a:hover { border-color: var(--white); }
+
+  .page {
+    max-width: 1040px;
+    margin: -46px auto 0;
+    padding: 0 40px 72px;
+    position: relative;
+  }
+
+  .body-grid {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    background: var(--white);
+    box-shadow: 0 24px 60px -30px rgba(10, 31, 77, 0.35);
+  }
+  aside {
+    background: var(--gray-light);
+    border-top-left-radius: 6px;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+  }
+  main { padding: 40px 36px 8px 40px; }
+
+  .block-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .block-title::before {
+    content: "";
+    width: 14px;
+    height: 3px;
+    background: var(--blue);
+    display: inline-block;
+  }
+
+  .lang-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 0.9rem; color: var(--ink); }
+  .lang-bar { flex: 1; height: 3px; background: var(--gray-line); margin: 0 12px; position: relative; }
+  .lang-bar span { position: absolute; left: 0; top: 0; height: 100%; background: var(--blue); }
+  .lang-note { color: var(--gray); font-size: 0.82rem; }
+
+  .skill-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 11px; }
+  .skill-list li { font-size: 0.92rem; color: var(--ink); padding-left: 16px; position: relative; }
+  .skill-list li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 8px; height: 1px; background: var(--blue); }
+
+  .contact-list { list-style: none; margin: 0; padding: 0; font-size: 0.88rem; color: var(--gray); }
+  .contact-list li { margin-bottom: 10px; }
+  .contact-list a { color: var(--ink); text-decoration: none; }
+  .contact-list a:hover { color: var(--blue); }
+
+  main section { margin-bottom: 38px; }
+  main section:last-child { margin-bottom: 0; }
+
+  .entry { padding: 18px 0; border-top: 1px solid var(--gray-line); }
+  .entry:first-of-type { border-top: none; padding-top: 0; }
+  .entry-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .entry-title { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1.06rem; margin: 0; color: var(--ink); }
+  .entry-org { color: var(--blue); font-size: 0.9rem; font-weight: 500; }
+  .entry-body { color: var(--gray); font-size: 0.94rem; margin-top: 8px; max-width: 58ch; }
+
+  .objective {
+    font-size: 1.08rem;
+    color: var(--ink);
+    max-width: 60ch;
+  }
+  .objective strong { color: var(--blue); font-weight: 600; }
+
+  footer {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 40px 40px;
+    color: var(--gray);
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--gray-line);
+    padding-top: 20px;
+  }
+
+  @media (max-width: 720px) {
+    .hero { padding: 48px 24px 72px; clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); }
+    .page { padding: 0 16px 60px; margin-top: -34px; }
+    .body-grid { grid-template-columns: 1fr; }
+    aside { border-radius: 0; }
+    main { padding: 32px 24px; }
+    footer { flex-direction: column; gap: 6px; padding: 20px 16px 32px; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero, .body-grid { animation: rise 0.55s ease-out both; }
+    .body-grid { animation-delay: 0.1s; }
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <p class="role-tag">Río Grande, Zacatecas — disponible para reubicación</p>
+    <h1 class="name">Jorge Leonardo</h1>
+    <div class="hero-contact">
+      <a href="mailto:jorgemireles443@gmail.com">jorgemireles443@gmail.com</a>
+      <a href="tel:+524427843349">+52 442-784-3349</a>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="body-grid">
+    <aside>
+      <div>
+        <p class="block-title">Perfil</p>
+        <p class="objective" style="font-size:0.95rem;">Ingeniero en Sistemas Computacionales enfocado en construir hacia una posición de liderazgo ejecutivo.</p>
+      </div>
+
+      <div>
+        <p class="block-title">Idiomas</p>
+        <div class="lang-row"><span>Español</span><div class="lang-bar"><span style="width:100%"></span></div><span class="lang-note">nativo</span></div>
+        <div class="lang-row"><span>Inglés</span><div class="lang-bar"><span style="width:80%"></span></div><span class="lang-note">funcional</span></div>
+      </div>
+
+      <div>
+        <p class="block-title">Habilidades</p>
+        <ul class="skill-list">
+          <li>C#</li>
+          <li>Ética de trabajo — chambeador</li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="block-title">Contacto</p>
+        <ul class="contact-list">
+          <li><a href="mailto:jorgemireles443@gmail.com">jorgemireles443@gmail.com</a></li>
+          <li><a href="tel:+524427843349">+52 442-784-3349</a></li>
+          <li>Río Grande, Zacatecas</li>
+        </ul>
+      </div>
+    </aside>
+
+    <main>
+      <section>
+        <p class="block-title">Objetivo</p>
+        <p class="objective">Aportar visión técnica y capacidad de ejecución a un rol de <strong>CEO</strong>, combinando formación en sistemas computacionales con experiencia directa de campo.</p>
+      </section>
+
+      <section>
+        <p class="block-title">Experiencia</p>
+        <div class="entry">
+          <div class="entry-head">
+            <p class="entry-title">Colaborador de proyecto</p>
+            <span class="entry-org">Empresa estadounidense</span>
+          </div>
+          <p class="entry-body">Labor realizada para una empresa con sede en Estados Unidos.</p>
+        </div>
+      </section>
+
+      <section>
+        <p class="block-title">Formación</p>
+        <div class="entry">
+          <div class="entry-head">
+            <p class="entry-title">Ingeniería en Sistemas Computacionales</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <p class="block-title">Proyectos</p>
+        <div class="entry">
+          <div class="entry-head">
+            <p class="entry-title">Sistema Médico</p>
+          </div>
+          <p class="entry-body">Proyecto de sistema orientado al sector salud.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <span>Jorge Leonardo</span>
+    <span>Río Grande, Zacatecas</span>
+  </footer>
+</div>
+
+</body>
+</html>
